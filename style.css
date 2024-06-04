@@ -69,7 +69,7 @@ body {
 }
 .weather {
     max-width: 1440px;
-    display: flex;
+    display: none; /*flex*/
     justify-content: center;
     margin-inline: auto;
 }
@@ -80,7 +80,7 @@ body {
 }
 .weather__main {
     height: 100%;
-    background: linear-gradient(130deg, #ad36cb 27%, #333 67%);
+    background: linear-gradient(-40deg, #0f1e79 0%, #af4bbb 40%);
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(255, 250, 250, 0.25), 0 4px 4px 0 rgba(253, 245, 245, 0.25);
     border-radius: 32px;
     display: grid;
@@ -120,11 +120,24 @@ body {
     top: 10px;
     right: 25px;
 }
-.main-weather__icon {
+.main-weather__temp::after {
+    content: "\00B0 C";
+}
+.main-weather__icon-wrap {
+    max-width: 136px;
+    aspect-ratio: 1;
+    position: relative;
     grid-column: 3;
     grid-row: 2;
     align-self: center;
-    justify-self: start;
+}
+.main-weather__icon {
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: -50px;
 }
 .weather__info {
     grid-column: 1 / -1;
@@ -151,15 +164,21 @@ body {
 .humidity__value {
     font-size: 22px;
 }
-.weather__visiblity {
+.humidity__value::after {
+    content: " %";
 }
-.visiblity {
+.weather__visibility {
 }
-.visiblity__title {
+.visibility {
+}
+.visibility__title {
     text-transform: uppercase;
 }
-.visiblity__value {
+.visibility__value {
     font-size: 22px;
+}
+.visibility__value::after {
+    content: " km";
 }
 .weather__pressure {
 }
@@ -171,6 +190,9 @@ body {
 .pressure__value {
     font-size: 22px;
 }
+.pressure__value::after {
+    content: " mmHg";
+}
 .weather__wind {
 }
 .wind {
@@ -180,4 +202,7 @@ body {
 }
 .wind__value {
     font-size: 22px;
+}
+.wind__value::after {
+    content: " m/s";
 }

@@ -17,31 +17,33 @@
         <main class="page">
             <form class="search-box">
                 <input type="search" placeholder="Search location..." class="search-box__input">
-                <button class="search-box__btn"></button>
+                <button type="button" class="search-box__btn"></button>
             </form>
             <div class="weather">
                 <div class="weather__main-wrap">
                     <div class="weather__main main-weather">                    
-                        <div class="weather__city">Burdwan</div>
-                        <div class="weather__date">Aug 01.01.01</div>
-                        <div class="main-weather__temp">27</div>
-                        <div class="main-weather__icon">:-)</div>
+                        <div class="weather__city"></div>
+                        <div class="weather__date"></div>
+                        <div class="main-weather__temp"></div>
+                        <div class="main-weather__icon-wrap">
+                            <img class="main-weather__icon" src="" alt="icon">
+                        </div>
                         <div class="weather__info">
                             <div class="weather__humidity humidity">
                                 <div class="humidity__title">Humidity</div>
-                                <div class="humidity__value">99</div>
+                                <div class="humidity__value"></div>
                             </div>
-                            <div class="weather__visiblity visiblity">
-                                <div class="visiblity__title">Visiblity</div>
-                                <div class="visiblity__value">8</div>
+                            <div class="weather__visibility visibility">
+                                <div class="visibility__title">visibility</div>
+                                <div class="visibility__value"></div>
                             </div>
                             <div class="weather__pressure pressure">
                                 <div class="pressure__title">Air Pressure</div>
-                                <div class="pressure__value">1005</div>
+                                <div class="pressure__value"></div>
                             </div>
                             <div class="weather__wind wind">
                                 <div class="wind__title">WIND</div>
-                                <div class="wind__value">2</div>
+                                <div class="wind__value"></div>
                             </div>
                         </div>
                     </div>
@@ -49,5 +51,6 @@
             </div>
         </main>
     </div>
+    <script src="app.js"></script>
 </body>
 </html>
