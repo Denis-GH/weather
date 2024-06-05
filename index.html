@@ -19,33 +19,44 @@
                 <input type="search" placeholder="Search location..." class="search-box__input">
                 <button type="button" class="search-box__btn"></button>
             </form>
-            <div class="weather">
-                <div class="weather__main-wrap">
-                    <div class="weather__main main-weather">                    
-                        <div class="weather__city"></div>
-                        <div class="weather__date"></div>
-                        <div class="main-weather__temp"></div>
-                        <div class="main-weather__icon-wrap">
-                            <img class="main-weather__icon" src="" alt="icon">
+            <div class="container">
+                <div class="today">
+                    <div class="today__main-wrap">
+                        <div class="today__main main-today">
+                            <div class="today__city"></div>
+                            <div class="today__date"></div>
+                            <div class="main-today__temp"></div>
+                            <div class="main-today__icon-wrap">
+                            <img class="main-today__icon" src="" alt="icon">
+                            </div>
+                            <div class="today__info">
+                                <div class="today__humidity humidity">
+                                    <div class="humidity__title">Humidity</div>
+                                    <div class="humidity__value"></div>
+                                </div>
+                                <div class="today__visibility visibility">
+                                    <div class="visibility__title">visibility</div>
+                                    <div class="visibility__value"></div>
+                                </div>
+                                <div class="today__pressure pressure">
+                                    <div class="pressure__title">Air Pressure</div>
+                                    <div class="pressure__value"></div>
+                                </div>
+                                <div class="today__wind wind">
+                                    <div class="wind__title">WIND</div>
+                                    <div class="wind__value"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="weather__info">
-                            <div class="weather__humidity humidity">
-                                <div class="humidity__title">Humidity</div>
-                                <div class="humidity__value"></div>
+                    </div>
+                    <div class="today__hourly hourly">
+                        <template id="template-hourly">
+                            <div class="hourly__card">
+                                <span class="hourly__time">19:00</span>
+                                <img class="hourly__icon" src="" alt="">
+                                <span class="hourly__temp">20</span>
                             </div>
-                            <div class="weather__visibility visibility">
-                                <div class="visibility__title">visibility</div>
-                                <div class="visibility__value"></div>
-                            </div>
-                            <div class="weather__pressure pressure">
-                                <div class="pressure__title">Air Pressure</div>
-                                <div class="pressure__value"></div>
-                            </div>
-                            <div class="weather__wind wind">
-                                <div class="wind__title">WIND</div>
-                                <div class="wind__value"></div>
-                            </div>
-                        </div>
+                        </template>
                     </div>
                 </div>
             </div>

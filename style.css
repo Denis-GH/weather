@@ -14,6 +14,9 @@ body {
 }
 .wrapper {
 }
+
+/* ------------------------------------------------ */
+
 .header {
     width: 100%;
     height: 166px;
@@ -37,6 +40,9 @@ body {
 }
 .page {
 }
+
+/* ------------------------------------------------ */
+
 .search-box {
     width: 100%;
     height: 100%;
@@ -66,19 +72,28 @@ body {
     background-image: url(img/search-icon.svg);
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 }
-.weather {
+
+/* ------------------------------------------------ */
+
+.container {
     max-width: 1440px;
     display: none; /*flex*/
     justify-content: center;
     margin-inline: auto;
 }
-.weather__main-wrap {
+.today {
+    width: 100%;
+    display: grid;
+    justify-items: center;
+}
+.today__main-wrap {
     width: 100%;
     max-width: 817px;
     aspect-ratio: 817 / 425;
 }
-.weather__main {
+.today__main {
     height: 100%;
     background: linear-gradient(-40deg, #0f1e79 0%, #af4bbb 40%);
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(255, 250, 250, 0.25), 0 4px 4px 0 rgba(253, 245, 245, 0.25);
@@ -87,17 +102,17 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
 }
-.weather__city {
+.today__city {
     font-weight: 300;
     font-size: 30px;
     padding: 35px 0 0 28px;
 }
-.weather__city::after {
+.today__city::after {
     content: url(img/location-icon.svg);
     position: relative;
     left: 3px;
 }
-.weather__date {
+.today__date {
     grid-column: 1;
     grid-row: 2;
     align-self: self-end;
@@ -107,23 +122,23 @@ body {
     font-size: 20px;
     text-decoration: underline;
 }
-.main-weather__temp {
+.main-today__temp {
     grid-column: 2;
     grid-row: 2;
     place-self: center;
     font-weight: 300;
     font-size: 70px;
 }
-.main-weather__temp::before {
+.main-today__temp::before {
     content: url(img/temp-icon.svg);
     position: relative;
     top: 10px;
     right: 25px;
 }
-.main-weather__temp::after {
+.main-today__temp::after {
     content: "\00B0 C";
 }
-.main-weather__icon-wrap {
+.main-today__icon-wrap {
     max-width: 136px;
     aspect-ratio: 1;
     position: relative;
@@ -131,7 +146,7 @@ body {
     grid-row: 2;
     align-self: center;
 }
-.main-weather__icon {
+.main-today__icon {
     width: 100%;
     max-height: 100%;
     object-fit: cover;
@@ -139,7 +154,7 @@ body {
     top: 0;
     left: -50px;
 }
-.weather__info {
+.today__info {
     grid-column: 1 / -1;
     grid-row: 3;
 
@@ -154,7 +169,7 @@ body {
     line-height: 1.6;
     padding-bottom: 4px;
 }
-.weather__humidity {
+.today__humidity {
 }
 .humidity {
 }
@@ -167,7 +182,7 @@ body {
 .humidity__value::after {
     content: " %";
 }
-.weather__visibility {
+.today__visibility {
 }
 .visibility {
 }
@@ -180,7 +195,7 @@ body {
 .visibility__value::after {
     content: " km";
 }
-.weather__pressure {
+.today__pressure {
 }
 .pressure {
 }
@@ -193,7 +208,7 @@ body {
 .pressure__value::after {
     content: " mmHg";
 }
-.weather__wind {
+.today__wind {
 }
 .wind {
 }
@@ -205,4 +220,58 @@ body {
 }
 .wind__value::after {
     content: " m/s";
+}
+
+/* ------------------------------------------------ */
+
+.today__hourly {
+    width: 100%;
+    padding-block: 50px 30px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    justify-content: space-around;
+    justify-items: center;
+}
+.hourly {
+}
+.hourly__card {
+    width: 121px;
+    height: 131px;
+    border-radius: 25px;
+    background: linear-gradient(180deg, #b83ad6 25%, #e17bff 50%, rgba(217, 217, 217, 0) 100%);
+    position: relative;
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+    justify-items: center;
+    align-items: center;
+}
+.hourly__card::after {
+    content: "";
+    border-radius: 25px;
+    width: 121px;
+    height: 72px;
+    backdrop-filter: blur(9px);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: linear-gradient(128deg, #672fb6 0%, rgba(0, 0, 0, 0) 100%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.hourly__time {
+    padding-top: 10px;
+    font-weight: 500;
+    font-size: 17px;
+}
+.hourly__icon {
+    min-height: 100%;
+    z-index: 99;
+}
+.hourly__temp {
+    padding-bottom: 4px;
+    font-weight: 300;
+    font-size: 21px;
+    z-index: 99;
+}
+.hourly__temp::after {
+    content: "\00B0 C";
 }
