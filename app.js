@@ -79,6 +79,10 @@ for (let i = 0; i < 8; i++) {
 // swiper
 
 const swiper = new Swiper('.swiper', {
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
 })
 
 // неделя

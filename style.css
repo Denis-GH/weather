@@ -10,9 +10,7 @@ body {
     background-color: #1E1E1E;
     font-family: "Poppins";
     color: #fff;
-    height: 100vh;
-}
-.wrapper {
+    max-height: 100vh;
 }
 
 /* ------------------------------------------------ */
@@ -37,8 +35,6 @@ body {
     font-size: 69px;
     line-height: 0.69;
     margin-left: 64px;
-}
-.page {
 }
 
 /* ------------------------------------------------ */
@@ -108,7 +104,6 @@ body {
 .city {
     font-weight: 300;
     font-size: 30px;
-    
 }
 .city::after {
     content: url(img/location-icon.svg);
@@ -172,10 +167,6 @@ body {
     line-height: 1.6;
     padding-bottom: 4px;
 }
-.today__humidity {
-}
-.humidity {
-}
 .humidity__title {
     text-transform: uppercase;
 }
@@ -184,10 +175,6 @@ body {
 }
 .humidity__value::after {
     content: " %";
-}
-.today__visibility {
-}
-.visibility {
 }
 .visibility__title {
     text-transform: uppercase;
@@ -198,10 +185,6 @@ body {
 .visibility__value::after {
     content: " km";
 }
-.today__pressure {
-}
-.pressure {
-}
 .pressure__title {
     text-transform: uppercase;
 }
@@ -210,10 +193,6 @@ body {
 }
 .pressure__value::after {
     content: " mmHg";
-}
-.today__wind {
-}
-.wind {
 }
 .wind__title {
     text-transform: uppercase;
@@ -234,8 +213,6 @@ body {
     grid-template-columns: repeat(8, 1fr);
     justify-content: space-around;
     justify-items: center;
-}
-.hourly {
 }
 .hourly__card {
     width: 121px;
@@ -339,4 +316,44 @@ body {
 }
 .week__humidity {
     z-index: 99;
+}
+
+/* ------------------------------------------------ */
+
+.swiper-button {
+    width: fit-content;
+    color: #fff;
+    font-weight: 300;
+    font-size: 30px;
+    top: 90px;
+}
+.swiper-button-disabled {
+    font-weight: 700;
+}
+.swiper-button-disabled::after {
+    content: "";
+    height: 3px;
+    width: 165px;
+    background-color: #695d5d;
+    position: absolute;
+    bottom: 0
+}
+
+.swiper-button-prev {
+    left: 711px;
+}
+.swiper-button-prev::after {
+    content: "";
+}
+.swiper-button-prev.swiper-button-disabled {
+    opacity: 1;
+}
+.swiper-button-next {
+    left: 876px;
+}
+.swiper-button-next::after {
+    content: "";
+}
+.swiper-button-next.swiper-button-disabled {
+    opacity: 1;
 }
