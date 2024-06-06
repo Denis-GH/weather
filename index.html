@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <title>Weather</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
         <header class="header">
             <div class="header__logo">
                 <img src="img/logo.png" alt="logo">
-                <span>Weather</span>
+                <h1>Weather</h1>
             </div>
         </header>
         <main class="page">
@@ -20,48 +21,103 @@
                 <button type="button" class="search-box__btn"></button>
             </form>
             <div class="container">
-                <div class="today">
-                    <div class="today__main-wrap">
-                        <div class="today__main main-today">
-                            <div class="today__city"></div>
-                            <div class="today__date"></div>
-                            <div class="main-today__temp"></div>
-                            <div class="main-today__icon-wrap">
-                            <img class="main-today__icon" src="" alt="icon">
-                            </div>
-                            <div class="today__info">
-                                <div class="today__humidity humidity">
-                                    <div class="humidity__title">Humidity</div>
-                                    <div class="humidity__value"></div>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <article class="today">
+                                <div class="today__main-wrap">
+                                    <div class="today__main main-today">
+                                        <h2 class="today__city city"></h2>
+                                        <div class="today__date"></div>
+                                        <div class="main-today__temp"></div>
+                                        <div class="main-today__icon-wrap">
+                                        <img class="main-today__icon" src="" alt="icon">
+                                        </div>
+                                        <div class="today__info">
+                                            <div class="today__humidity humidity">
+                                                <div class="humidity__title">Humidity</div>
+                                                <div class="humidity__value"></div>
+                                            </div>
+                                            <div class="today__visibility visibility">
+                                                <div class="visibility__title">visibility</div>
+                                                <div class="visibility__value"></div>
+                                            </div>
+                                            <div class="today__pressure pressure">
+                                                <div class="pressure__title">Air Pressure</div>
+                                                <div class="pressure__value"></div>
+                                            </div>
+                                            <div class="today__wind wind">
+                                                <div class="wind__title">WIND</div>
+                                                <div class="wind__value"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="today__visibility visibility">
-                                    <div class="visibility__title">visibility</div>
-                                    <div class="visibility__value"></div>
+                                <div class="today__hourly hourly">
+                                    <template id="template-hourly">
+                                        <div class="hourly__card card">
+                                            <span class="hourly__time"></span>
+                                            <img class="hourly__icon" src="" alt="icon">
+                                            <span class="hourly__temp"></span>
+                                        </div>
+                                    </template>
                                 </div>
-                                <div class="today__pressure pressure">
-                                    <div class="pressure__title">Air Pressure</div>
-                                    <div class="pressure__value"></div>
-                                </div>
-                                <div class="today__wind wind">
-                                    <div class="wind__title">WIND</div>
-                                    <div class="wind__value"></div>
-                                </div>
-                            </div>
+                            </article>
                         </div>
-                    </div>
-                    <div class="today__hourly hourly">
-                        <template id="template-hourly">
-                            <div class="hourly__card">
-                                <span class="hourly__time">19:00</span>
-                                <img class="hourly__icon" src="" alt="">
-                                <span class="hourly__temp">20</span>
-                            </div>
-                        </template>
+                        <div class="swiper-slide">
+                            <article class="week">
+                                <h2 class="week__city city"></h2>
+                                <div class="week__info">
+                                    <span></span>
+                                    <span>time</span>
+                                    <span>clouds</span>
+                                    <span>temp., &deg;C</span>
+                                    <span>air press. mmHg</span>
+                                    <span>wind, m/s</span>
+                                    <span>humidity, %</span>
+                                </div>
+                                <template id="template-week">
+                                    <div class="week__card card">
+                                        <span class="week__date"></span>
+                                        <span class="week__time"></span>
+                                        <span class="week__time"></span>
+                                        <span class="week__time"></span>
+                                        <span class="week__time"></span>
+
+                                        <img class="week__icon" src="" alt="icon">
+                                        <img class="week__icon" src="" alt="icon">
+                                        <img class="week__icon" src="" alt="icon">
+                                        <img class="week__icon" src="" alt="icon">
+
+                                        <span class="week__temp"></span>
+                                        <span class="week__temp"></span>
+                                        <span class="week__temp"></span>
+                                        <span class="week__temp"></span>
+
+                                        <span class="week__pressure"></span>
+                                        <span class="week__pressure"></span>
+                                        <span class="week__pressure"></span>
+                                        <span class="week__pressure"></span>
+
+                                        <span class="week__wind"></span>
+                                        <span class="week__wind"></span>
+                                        <span class="week__wind"></span>
+                                        <span class="week__wind"></span>
+                                        
+                                        <span class="week__humidity"></span>
+                                        <span class="week__humidity"></span>
+                                        <span class="week__humidity"></span>
+                                        <span class="week__humidity"></span>
+                                    </div>
+                                </template>
+                            </article>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

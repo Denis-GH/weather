@@ -31,7 +31,7 @@ body {
     margin-top: 7px;
     margin-left: 3px;
 }
-.header__logo span {
+.header__logo h1 {
     display: block;
     font-weight: 400;
     font-size: 69px;
@@ -103,11 +103,14 @@ body {
     grid-template-rows: repeat(3, 1fr);
 }
 .today__city {
-    font-weight: 300;
-    font-size: 30px;
     padding: 35px 0 0 28px;
 }
-.today__city::after {
+.city {
+    font-weight: 300;
+    font-size: 30px;
+    
+}
+.city::after {
     content: url(img/location-icon.svg);
     position: relative;
     left: 3px;
@@ -237,6 +240,8 @@ body {
 .hourly__card {
     width: 121px;
     height: 131px;
+}
+.card {
     border-radius: 25px;
     background: linear-gradient(180deg, #b83ad6 25%, #e17bff 50%, rgba(217, 217, 217, 0) 100%);
     position: relative;
@@ -245,11 +250,11 @@ body {
     justify-items: center;
     align-items: center;
 }
-.hourly__card::after {
+.card::after {
     content: "";
     border-radius: 25px;
-    width: 121px;
-    height: 72px;
+    width: 100%;
+    aspect-ratio: 121 / 72;
     backdrop-filter: blur(9px);
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     background: linear-gradient(128deg, #672fb6 0%, rgba(0, 0, 0, 0) 100%);
@@ -274,4 +279,64 @@ body {
 }
 .hourly__temp::after {
     content: "\00B0 C";
+}
+
+/* ------------------------------------------------ */
+
+.week {
+    max-width: 100%;
+    padding-block: 0 30px;
+    display: grid;
+    grid-template-columns: min-content repeat(5, 1fr);
+    grid-template-rows: repeat(2, min-content);
+    justify-content: space-around;
+    justify-items: center;
+    gap: 10px;
+    row-gap: 20px;
+}
+.week__city {
+    grid-column: 2 / -1;
+    justify-self: start;
+    padding: 25px 0 0 0;
+}
+.week__info {
+    width: 64px;
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    align-items: center;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.1;
+    text-align: right;
+}
+.week__card {
+    width: 100%;
+    aspect-ratio: 121 / 131;
+    border-radius: 35px;
+    grid-template-rows: repeat(7, calc(100% / 7));
+    grid-template-columns: repeat(4, 1fr);
+}
+.week__date {
+    grid-column: 1 / -1;
+    font-size: 20px;
+    padding-block: 5px;
+}
+.week__time {
+    z-index: 99;
+}
+.week__icon {
+    max-width: 66px;
+    z-index: 99;
+}
+.week__temp {
+    z-index: 99;
+}
+.week__pressure {
+    z-index: 99;
+}
+.week__wind {
+    z-index: 99;
+}
+.week__humidity {
+    z-index: 99;
 }
