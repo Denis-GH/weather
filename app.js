@@ -3,6 +3,26 @@ const apiKey = "6dcbc31b2b088303c406cd5c1fdf18a9"
 const searchInput = document.querySelector(".search-box__input")
 const searchButton = document.querySelector(".search-box__btn")
 
+function searchHandle() {
+    if (searchInput.value) {
+        getWeatherMain(searchInput.value)
+        getWeatherHourly(searchInput.value)
+        getWeatherWeek(searchInput.value)
+    } else {
+        alert('enter a city')
+    }
+    searchInput.value = ""
+}
+
+searchButton.addEventListener("click", searchHandle)
+
+searchInput.addEventListener("keydown", (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault()
+        searchHandle()
+    }
+})
+
 // текущая погода
 
 async function getWeatherMain(city) {
@@ -26,26 +46,6 @@ async function getWeatherMain(city) {
         alert(data.message)
     }
 }
-
-function searchHandle() {
-    if (searchInput.value) {
-        getWeatherMain(searchInput.value)
-        getWeatherHourly(searchInput.value)
-        getWeatherWeek(searchInput.value)
-    } else {
-        alert('enter a city')
-    }
-    searchInput.value = ""
-}
-
-searchButton.addEventListener("click", searchHandle)
-
-searchInput.addEventListener("keydown", (event) => {
-    if (event.key === 'Enter') {
-        event.preventDefault()
-        searchHandle()
-    }
-})
 
 // по часам
 
