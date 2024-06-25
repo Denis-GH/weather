@@ -52,6 +52,11 @@ async function getWeatherMain(city) {
 const hourlyCards = document.querySelector(".today__hourly")
 const templateHourly = document.querySelector("#template-hourly")
 
+for (let i = 0; i < 8; i++) {
+    const item = templateHourly.content.cloneNode(true)
+    hourlyCards.append(item)
+}
+
 async function getWeatherHourly(city) {
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`
     
@@ -71,24 +76,15 @@ async function getWeatherHourly(city) {
     }
 }
 
-for (let i = 0; i < 8; i++) {
-    const item = templateHourly.content.cloneNode(true)
-    hourlyCards.append(item)
-}
-
-// swiper
-
-const swiper = new Swiper('.swiper', {
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-})
-
 // неделя
 
 const weekCards = document.querySelector(".week")
 const templateWeek = document.querySelector("#template-week")
+
+for (let i = 0; i < 5; i++) {
+    const item = templateWeek.content.cloneNode(true)
+    weekCards.append(item)
+}
 
 async function getWeatherWeek(city) {
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`
@@ -120,7 +116,11 @@ async function getWeatherWeek(city) {
     
 }   
 
-for (let i = 0; i < 5; i++) {
-    const item = templateWeek.content.cloneNode(true)
-    weekCards.append(item)
-}
+// swiper
+
+const swiper = new Swiper('.swiper', {
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+})
