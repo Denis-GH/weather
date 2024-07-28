@@ -10,19 +10,27 @@
 <body>
     <div class="wrapper">
         <header class="header">
-            <div class="header__logo">
-                <img src="img/logo.png" alt="logo">
-                <h1>Weather</h1>
+            <div class="header__container">
+                <div class="header__logo">
+                    <img src="img/logo.svg" alt="logo">
+                    <h1>Погода</h1>
+                </div>
+                <div class="header__swiper-buttons">
+                    <div class="header__swiper-button">
+                        <button class="swiper-button-prev swiper-button">Сегодня</button>
+                    </div>
+                    <div class="header__swiper-button">
+                        <button class="swiper-button-next swiper-button">5 дней</button>
+                    </div>
+                </div>
+                <form class="search-box">
+                    <input type="search" placeholder="Найти город" class="search-box__input">
+                    <button type="button" class="search-box__btn"></button>
+                </form>
             </div>
         </header>
         <main class="page">
-            <form class="search-box">
-                <input type="search" placeholder="Search location..." class="search-box__input">
-                <button type="button" class="search-box__btn"></button>
-            </form>
-            <div class="container">
-                <div class="swiper-button-prev swiper-button">Today</div>
-                <div class="swiper-button-next swiper-button">5 days</div>
+            <div class="page__container">
                 <div class="swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
@@ -30,40 +38,36 @@
                                 <div class="today__main-wrap">
                                     <div class="today__main main-today">
                                         <h2 class="today__city city"></h2>
-                                        <div class="today__date"></div>
-                                        <div class="main-today__temp"></div>
-                                        <div class="main-today__icon-wrap">
-                                        <img class="main-today__icon" src="" alt="icon">
+                                        <div class="main-today__temp-wrap">
+                                            <div class="main-today__temp"></div>
+                                            <img class="main-today__icon" src="" alt="icon">
                                         </div>
                                         <div class="today__info">
-                                            <div class="today__humidity humidity">
-                                                <div class="humidity__title">Humidity</div>
-                                                <div class="humidity__value"></div>
+                                            <div class="today__wind wind">
+                                                <img src="./img/wind.svg" width="23" height="23" alt="wind icon" class="wind__icon"></img>
+                                                <div class="wind__value">WIND</div>
                                             </div>
-                                            <div class="today__visibility visibility">
-                                                <div class="visibility__title">visibility</div>
-                                                <div class="visibility__value"></div>
+                                            <div class="today__humidity humidity">
+                                                <img src="./img/humidity.svg" width="23" height="23" alt="humidity icon" class="humidity__icon">
+                                                <div class="humidity__value">Humidity</div>
                                             </div>
                                             <div class="today__pressure pressure">
-                                                <div class="pressure__title">Air Pressure</div>
-                                                <div class="pressure__value"></div>
+                                                <img src="./img/pressure.svg" width="23" height="23" alt="air pressure icon" class="pressure__icon"></img>
+                                                <div class="pressure__value">Air Pressure</div>
                                             </div>
-                                            <div class="today__wind wind">
-                                                <div class="wind__title">WIND</div>
-                                                <div class="wind__value"></div>
-                                            </div>
+                                        </div>
+                                        <div class="today__hourly hourly">
+                                            <template id="template-hourly">
+                                                <div class="hourly__card card">
+                                                    <span class="hourly__time"></span>
+                                                    <img class="hourly__icon" src="" alt="icon">
+                                                    <span class="hourly__temp"></span>
+                                                </div>
+                                            </template>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="today__hourly hourly">
-                                    <template id="template-hourly">
-                                        <div class="hourly__card card">
-                                            <span class="hourly__time"></span>
-                                            <img class="hourly__icon" src="" alt="icon">
-                                            <span class="hourly__temp"></span>
-                                        </div>
-                                    </template>
-                                </div>
+                                <div class="map">map</div>
                             </article>
                         </div>
                         <div class="swiper-slide">

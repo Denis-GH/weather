@@ -35,13 +35,11 @@ async function getWeatherMain(city) {
         document.querySelectorAll(".city").forEach(item => item.innerHTML = data.name)
         document.querySelector(".main-today__temp").innerHTML = Math.round(data.main.temp)
         document.querySelector(".humidity__value").innerHTML = Math.round(data.main.humidity)
-        document.querySelector(".visibility__value").innerHTML = Math.round(data.visibility / 1000)
         document.querySelector(".pressure__value").innerHTML = Math.round(data.main.pressure / 1.333)
         document.querySelector(".wind__value").innerHTML = Math.round(data.wind.speed)
-        document.querySelector(".today__date").innerHTML = new Date(data.dt * 1000).toDateString().slice(0, 10)
         document.querySelector(".main-today__icon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
         
-        document.querySelector(".container").style.display = "flex"
+        document.querySelector(".page__container").style.display = "flex"
     } else {
         alert(data.message)
     }
@@ -123,4 +121,5 @@ const swiper = new Swiper('.swiper', {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
     },
+    allowTouchMove: false,
 })
