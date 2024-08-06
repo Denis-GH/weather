@@ -141,20 +141,21 @@ body {
     margin: 0 auto;
     padding-inline: clamp(10px, 1.4vw, 20px);
     display: grid;
-    grid-template-columns: 66.6% 33.4%;
-    grid-template-rows: fit-content;
+    grid-template-columns: 65% 35%;
+    justify-content: center;
     justify-items: center;
 }
 .today__main-wrap {
     width: calc(100% - 10px);
     margin-right: 10px;
+    border-radius: clamp(6px, 0.83vw, 12px);
+    overflow: hidden;
 }
 .today__main {
     height: 100%;
     width: 100%;
     background-color: #438ceb;
     color: var(--font-white);
-    border-radius: clamp(6px, 0.83vw, 12px);
     padding: 4.7% 5.9%;
     display: flex;
     flex-direction: column;
@@ -228,8 +229,50 @@ body {
     content: " m/s";
 }
 .map {
-    border: 1px solid red;
+    border: 1px solid #aaa;
+    background-color: #ddd;
     width: 100%;
+    border-radius: clamp(6px, 0.83vw, 12px);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+}
+.map__image {
+    width: 100%;
+    height: 100%;
+}
+.map__loader {
+    border: 5px solid #e3e3e3;
+    border-radius: 50%;
+    border-top: 4px solid #438ceb;
+    height: 30%;
+    aspect-ratio: 1;
+    animation: spin 2s linear infinite;
+    display: none; /* block */
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .today {
+        grid-template-columns: 100vw;
+    }
+    .today__main-wrap {
+        position: relative;
+        top: -2.5vw;
+        width: 100%;
+        border-radius: clamp(15px, 3.25vw, 25px);
+        /* max-width: 476px; */
+        margin-right: 0;
+        grid-row: 2;
+    }
+    .map {
+        width: 100vw;
+        aspect-ratio: 550 / 142;
+        border-radius: clamp(15px, 2.6vw, 20px) clamp(15px, 2.6vw, 20px) 0 0;
+    }
 }
 
 .today__hourly {

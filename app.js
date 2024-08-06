@@ -1,7 +1,12 @@
 const apiKey = "6dcbc31b2b088303c406cd5c1fdf18a9"
+const mapApikey = "38786247-3bfc-4e15-a665-578827b1dfa8"
 
 const searchInput = document.querySelector(".search-box__input")
 const searchButton = document.querySelector(".search-box__btn")
+
+const loader = document.querySelector(".map__loader")
+const map = document.querySelector(".map__image")
+let coordinates
 
 function searchHandle() {
     if (searchInput.value) {
@@ -40,10 +45,46 @@ async function getWeatherMain(city) {
         document.querySelector(".main-today__icon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
         
         document.querySelector(".page__container").style.display = "flex"
+
+        // для карты
+        coordinates = `${data.coord.lon},${data.coord.lat}`
+        getMap()
     } else {
         alert(data.message)
     }
 }
+
+// карта
+
+function getMap() {
+    let size
+    if (window.innerWidth <= 768) {
+        size = "550,142"
+    } else {
+        size = "350,350"
+    }
+    
+    loader.style.display = "block"
+    map.style.display = "none"
+            
+    map.src = `https://static-maps.yandex.ru/v1?ll=${coordinates}&z=7&size=${size}&apikey=${mapApikey}`
+    
+    map.onload = () => {
+        loader.style.display = "none";
+        map.style.display = "block";
+    }
+    console.log('hello')
+}
+
+let currentViewportWidth = window.innerWidth > 768 ? 'wide' : 'narrow'
+function debouncedUpdateMap() {
+    const newViewportWidth = window.innerWidth > 768 ? 'wide' : 'narrow'
+    if (newViewportWidth !== currentViewportWidth) {
+        currentViewportWidth = newViewportWidth
+        getMap()
+    }
+}
+window.addEventListener('resize', () => debouncedUpdateMap())
 
 // по часам
 
