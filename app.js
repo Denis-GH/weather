@@ -31,7 +31,7 @@ searchInput.addEventListener("keydown", (event) => {
 // current weather
 
 async function getWeatherMain(city) {
-    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${city}`
+    const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${city}`
     
     const response = await fetch(apiUrl)
     const data = await response.json()
@@ -92,7 +92,7 @@ for (let i = 0; i < 8; i++) {
 }
 
 async function getWeatherHourly(city) {
-    const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${city}`
+    const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${city}`
     
     const response = await fetch(apiUrl)
     const data = await response.json()
@@ -121,7 +121,7 @@ for (let i = 0; i < 3; i++) {
 }
 
 async function getWeatherWeek(city) {
-    const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${city}&days=3`
+    const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${city}&days=3`
     
     const response = await fetch(apiUrl)
     const data = await response.json()
