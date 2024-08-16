@@ -41,7 +41,7 @@ async function getWeatherMain(city) {
     document.querySelector(".humidity__value").innerHTML = Math.round(data.current.humidity)
     document.querySelector(".pressure__value").innerHTML = Math.round(data.current.pressure_mb / 1.333)
     document.querySelector(".wind__value").innerHTML = Math.round(data.current.wind_kph / 3.6)
-    document.querySelector(".main-today__icon").src = data.current.condition.icon
+    document.querySelector(".main-today__icon").src = `https:${data.current.condition.icon}`
     
     document.querySelector(".page__container").style.display = "flex"
 
@@ -106,7 +106,7 @@ async function getWeatherHourly(city) {
     for (let i = 0; i < 8; i++) {
         hourlyTimes[i].innerHTML = data.forecast.forecastday[0].hour[i * 3].time.slice(11, 17)
         hourlyTemps[i].innerHTML = Math.round(data.forecast.forecastday[0].hour[i * 3].temp_c)
-        hourlyIcons[i].src = data.forecast.forecastday[0].hour[i * 3].condition.icon
+        hourlyIcons[i].src = `https:${data.forecast.forecastday[0].hour[i * 3].condition.icon}`
     }
 }
 
@@ -142,7 +142,7 @@ async function getWeatherWeek(city) {
         for (let i = 0; i < 4; i++) {
             console.log(weekTimes[i])
             weekTimes[i + (4 * j)].innerHTML = data.forecast.forecastday[j].hour[i * 6].time.slice(11, 17)
-            weekIcons[i + (4 * j)].src = data.forecast.forecastday[j].hour[i * 6].condition.icon
+            weekIcons[i + (4 * j)].src = `https:${data.forecast.forecastday[j].hour[i * 6].condition.icon}`
             weekTemps[i + (4 * j)].innerHTML = Math.round(data.forecast.forecastday[j].hour[i * 6].temp_c)
             weekPressures[i + (4 * j)].innerHTML = Math.round(data.forecast.forecastday[j].hour[i * 6].pressure_mb / 1.333)
             weekWinds[i + (4 * j)].innerHTML = Math.round(data.forecast.forecastday[j].hour[i * 6].wind_kph / 3.6)
