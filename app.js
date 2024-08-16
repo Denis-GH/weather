@@ -1,4 +1,4 @@
-const apiKey = "6dcbc31b2b088303c406cd5c1fdf18a9"
+const weatherApiKey = "00f7fee2b6c64b14a4950110242407"
 const mapApikey = "38786247-3bfc-4e15-a665-578827b1dfa8"
 
 const searchInput = document.querySelector(".search-box__input")
@@ -28,33 +28,29 @@ searchInput.addEventListener("keydown", (event) => {
     }
 })
 
-// текущая погода
+// current weather
 
 async function getWeatherMain(city) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${city}`
     
     const response = await fetch(apiUrl)
     const data = await response.json()
+    
+    document.querySelectorAll(".city").forEach(item => item.innerHTML = data.location.name)
+    document.querySelector(".main-today__temp").innerHTML = Math.round(data.current.temp_c)
+    document.querySelector(".humidity__value").innerHTML = Math.round(data.current.humidity)
+    document.querySelector(".pressure__value").innerHTML = Math.round(data.current.pressure_mb / 1.333)
+    document.querySelector(".wind__value").innerHTML = Math.round(data.current.wind_kph / 3.6)
+    document.querySelector(".main-today__icon").src = data.current.condition.icon
+    
+    document.querySelector(".page__container").style.display = "flex"
 
-    if (data.cod === 200) {
-        document.querySelectorAll(".city").forEach(item => item.innerHTML = data.name)
-        document.querySelector(".main-today__temp").innerHTML = Math.round(data.main.temp)
-        document.querySelector(".humidity__value").innerHTML = Math.round(data.main.humidity)
-        document.querySelector(".pressure__value").innerHTML = Math.round(data.main.pressure / 1.333)
-        document.querySelector(".wind__value").innerHTML = Math.round(data.wind.speed)
-        document.querySelector(".main-today__icon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-        
-        document.querySelector(".page__container").style.display = "flex"
-
-        // для карты
-        coordinates = `${data.coord.lon},${data.coord.lat}`
-        getMap()
-    } else {
-        alert(data.message)
-    }
+    // for map
+    coordinates = `${data.location.lon},${data.location.lat}`
+    getMap()
 }
 
-// карта
+// map
 
 function getMap() {
     let size
@@ -73,7 +69,6 @@ function getMap() {
         loader.style.display = "none";
         map.style.display = "block";
     }
-    console.log('hello')
 }
 
 let currentViewportWidth = window.innerWidth > 768 ? 'wide' : 'narrow'
@@ -86,7 +81,7 @@ function debouncedUpdateMap() {
 }
 window.addEventListener('resize', () => debouncedUpdateMap())
 
-// по часам
+// by hours
 
 const hourlyCards = document.querySelector(".today__hourly")
 const templateHourly = document.querySelector("#template-hourly")
@@ -97,7 +92,7 @@ for (let i = 0; i < 8; i++) {
 }
 
 async function getWeatherHourly(city) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`
+    const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${city}`
     
     const response = await fetch(apiUrl)
     const data = await response.json()
@@ -106,27 +101,27 @@ async function getWeatherHourly(city) {
     const hourlyTimes = document.querySelectorAll(".hourly__time")
     const hourlyIcons = document.querySelectorAll(".hourly__icon")
     
-    const timezone = data.city.timezone
-    
+    const currentHour = +data.location.localtime.slice(11, 13)
+
     for (let i = 0; i < 8; i++) {
-        hourlyTimes[i].innerHTML = new Date((data.list[i].dt + timezone) * 1000).toUTCString().slice(17, 22)
-        hourlyTemps[i].innerHTML = Math.round(data.list[i].main.temp)
-        hourlyIcons[i].src = `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`
+        hourlyTimes[i].innerHTML = data.forecast.forecastday[0].hour[i * 3].time.slice(11, 17)
+        hourlyTemps[i].innerHTML = Math.round(data.forecast.forecastday[0].hour[i * 3].temp_c)
+        hourlyIcons[i].src = data.forecast.forecastday[0].hour[i * 3].condition.icon
     }
 }
 
-// неделя
+// week
 
 const weekCards = document.querySelector(".week")
 const templateWeek = document.querySelector("#template-week")
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 3; i++) {
     const item = templateWeek.content.cloneNode(true)
     weekCards.append(item)
 }
 
 async function getWeatherWeek(city) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`
+    const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${city}&days=3`
     
     const response = await fetch(apiUrl)
     const data = await response.json()
@@ -138,21 +133,22 @@ async function getWeatherWeek(city) {
     const weekPressures = document.querySelectorAll(".week__pressure")
     const weekWinds = document.querySelectorAll(".week__wind")
     const weekHumidities = document.querySelectorAll(".week__humidity")
-    
-    const timezone = data.city.timezone
-    
-    for (let i = 0; i < 5; i++) {
-        weekDates[i].innerHTML = new Date((data.list[i * 8].dt + timezone) * 1000).toUTCString().slice(0, 12)
+    console.log(weekTimes)
+        
+    for (let i = 0; i < 3; i++) {
+        weekDates[i].innerHTML = new Date(data.forecast.forecastday[i].date_epoch * 1000).toString().slice(0, 10)
     }
-    for (let i = 0; i < 20; i++) {
-        weekTimes[i].innerHTML = new Date((data.list[i * 2].dt + timezone) * 1000).toUTCString().slice(17, 22)
-        weekIcons[i].src = `https://openweathermap.org/img/wn/${data.list[i * 2].weather[0].icon}@2x.png`
-        weekTemps[i].innerHTML = Math.round(data.list[i * 2].main.temp)
-        weekPressures[i].innerHTML = Math.round(data.list[i * 2].main.pressure / 1.333)
-        weekWinds[i].innerHTML = Math.round(data.list[i * 2].wind.speed)
-        weekHumidities[i].innerHTML = Math.round(data.list[i * 2].main.humidity)
+    for (let j = 0; j < 3; j++) {
+        for (let i = 0; i < 4; i++) {
+            console.log(weekTimes[i])
+            weekTimes[i + (4 * j)].innerHTML = data.forecast.forecastday[j].hour[i * 6].time.slice(11, 17)
+            weekIcons[i + (4 * j)].src = data.forecast.forecastday[j].hour[i * 6].condition.icon
+            weekTemps[i + (4 * j)].innerHTML = Math.round(data.forecast.forecastday[j].hour[i * 6].temp_c)
+            weekPressures[i + (4 * j)].innerHTML = Math.round(data.forecast.forecastday[j].hour[i * 6].pressure_mb / 1.333)
+            weekWinds[i + (4 * j)].innerHTML = Math.round(data.forecast.forecastday[j].hour[i * 6].wind_kph / 3.6)
+            weekHumidities[i + (4 * j)].innerHTML = Math.round(data.forecast.forecastday[j].hour[i * 6].humidity)
+        } 
     }
-    
 }   
 
 // swiper

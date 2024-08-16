@@ -11,6 +11,7 @@
     --element: #fff;
     --font: #000;
     --font-white: #fff;
+    --card-color: #52c0ee;
 }
 body {
     background-color: var(--background);
@@ -25,7 +26,7 @@ body {
     background-color: var(--element);
     color: var(--font);
     border-bottom: 2px solid #d9dbdf;
-    margin-bottom: clamp(7px, 1%, 14px);
+    margin-bottom: clamp(3px, 1%, 14px);
 }
 .header__container {
     max-width: 1440px;
@@ -49,7 +50,7 @@ body {
 .header__logo h1 {
     display: inline-block;
     font-weight: 600;
-    font-size: clamp(18px, 2.4vw, 35px);
+    font-size: clamp(16px, 2.4vw, 35px);
     line-height: normal;
     letter-spacing: -0.03em;
 }
@@ -57,11 +58,12 @@ body {
     --swiper-navigation-size: auto;
 }
 .header__swiper-buttons {
+    min-width: clamp(145px, 22.4vw, 322px);
     height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     place-self: center;
-    flex-basis: 23%;
+    flex-basis: fit-content;
 }
 .header__swiper-button {
     display: inline-block;
@@ -97,12 +99,12 @@ body {
     opacity: 1;
 }
 .search-box {
-    width: clamp(100px, 25vw, 355px);
+    width: clamp(140px, 25vw, 355px);
     aspect-ratio: 355 / 53;
     flex-basis: auto;
     display: flex;
     box-sizing: content-box;
-    /* margin-right: 42vw; */
+    margin-left: auto;
 }
 .search-box__input {
     height: 100%;
@@ -154,14 +156,15 @@ body {
 .today__main {
     height: 100%;
     width: 100%;
-    background-color: #438ceb;
+    background-color: var(--card-color);
     color: var(--font-white);
     padding: 4.7% 5.9%;
     display: flex;
     flex-direction: column;
 }
-/* .today__city {
-} */
+.today__city {
+    margin-bottom: 4px;
+}
 .city {
     font-weight: 500;
     font-size: clamp(16px, 1.95vw, 20px);
@@ -169,19 +172,18 @@ body {
 .main-today__temp-wrap {
     display: flex;
     align-items: center;
+    margin-bottom: 4px;
 }
 .main-today__temp {
     display: inline-block;
     font-weight: 500;
-    font-size: clamp(40px, 5.38vw, 55px);
+    font-size: clamp(41px, 5.38vw, 55px);
 }
 .main-today__temp::after {
     content: "\00B0";
 }
 .main-today__icon {
-    max-width: clamp(74px, 9vw, 92px);
-    aspect-ratio: 1;
-    object-fit: cover;
+    width: clamp(60px, 7.8vw, 80px);
 }
 .today__info {
     display: flex;
@@ -214,7 +216,7 @@ body {
     width: 1.3em;
 }
 .pressure__value::after {
-    content: " mmHg";
+    content: " мм рт. ст.";
 }
 .today__wind {
     display: grid;
@@ -226,7 +228,7 @@ body {
     width: 1.3em;
 }
 .wind__value::after {
-    content: " m/s";
+    content: " м/с";
 }
 .map {
     border: 1px solid #aaa;
@@ -256,6 +258,14 @@ body {
 }
 
 @media (max-width: 768px) {
+    .header__logo {
+        position: absolute;
+        top: 8.5vw;
+        z-index: 9;
+        padding: clamp(0px, 0.7vw, 5px);
+        background-color: var(--element);
+        border-radius: 20px;
+    }
     .today {
         grid-template-columns: 100vw;
     }
@@ -267,6 +277,12 @@ body {
         /* max-width: 476px; */
         margin-right: 0;
         grid-row: 2;
+    }
+    .today__main {
+        align-items: center;
+    }
+    .today__hourly {
+        justify-content: center;
     }
     .map {
         width: 100vw;
@@ -286,14 +302,13 @@ body {
     display: none;
   }
 .hourly__card {
-    width: clamp(10px, 7.4vw, 76px);
+    width: clamp(57px, 7.4vw, 76px);
     aspect-ratio: 54 / 64;
-    padding-inline: clamp(4px, 1vw, 10px);
+    padding-inline: clamp(2px, 1vw, 10px);
     display: flex;
     flex-direction: column;
 }
 .card {
-    /* width: 100%; */
     background-color: transparent;
     position: relative;
     justify-items: center;
@@ -301,7 +316,7 @@ body {
 }
 .hourly__time {
     font-weight: 300;
-    font-size: clamp(10px, 1.5vw, 15px);
+    font-size: clamp(12px, 1.5vw, 15px);
 }
 .hourly__icon {
     width: 83%;
@@ -310,7 +325,7 @@ body {
 }
 .hourly__temp {
     font-weight: 500;
-    font-size: clamp(10px, 1.76vw, 18px);
+    font-size: clamp(13px, 1.76vw, 18px);
     z-index: 99;
 }
 .hourly__temp::after {
@@ -320,15 +335,17 @@ body {
 /* ------------------------------------------------ */
 
 .week {
-    max-width: 100%;
-    padding-block: 0 30px;
+    width: clamp(0px, 100%, 1000px);
+    padding: 0 clamp(10px, 1.4vw, 20px) 30px;
+    margin-inline: auto;
     display: grid;
-    grid-template-columns: min-content repeat(5, 1fr);
+    grid-template-columns: min-content repeat(3, 1fr);
     grid-template-rows: repeat(2, min-content);
     justify-content: space-around;
     justify-items: center;
     gap: 10px;
     row-gap: 20px;
+    overflow-x: scroll;
 }
 .week__city {
     grid-column: 2 / -1;
@@ -348,32 +365,29 @@ body {
 .week__card {
     width: 100%;
     aspect-ratio: 121 / 131;
+    background-color: var(--card-color);
+    color: var(--font-white);
     border-radius: 35px;
     display: grid;
     grid-template-rows: repeat(7, calc(100% / 7));
     grid-template-columns: repeat(4, 1fr);
+    font-size: clamp(13px, 1.7vw, 17px);
 }
 .week__date {
     grid-column: 1 / -1;
-    font-size: 20px;
+    font-size: clamp(15px, 2vw, 20px);
     padding-block: 5px;
 }
-.week__time {
-    z-index: 99;
-}
+/* .week__time {
+} */
 .week__icon {
-    max-width: 66px;
-    z-index: 99;
+    width: clamp(38px, 5vw, 50px);
 }
-.week__temp {
-    z-index: 99;
+/* .week__temp {
 }
 .week__pressure {
-    z-index: 99;
 }
 .week__wind {
-    z-index: 99;
 }
 .week__humidity {
-    z-index: 99;
-}
+} */
