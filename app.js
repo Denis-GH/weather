@@ -133,14 +133,12 @@ async function getWeatherWeek(city) {
     const weekPressures = document.querySelectorAll(".week__pressure")
     const weekWinds = document.querySelectorAll(".week__wind")
     const weekHumidities = document.querySelectorAll(".week__humidity")
-    console.log(weekTimes)
         
     for (let i = 0; i < 3; i++) {
         weekDates[i].innerHTML = new Date(data.forecast.forecastday[i].date_epoch * 1000).toString().slice(0, 10)
     }
     for (let j = 0; j < 3; j++) {
         for (let i = 0; i < 4; i++) {
-            console.log(weekTimes[i])
             weekTimes[i + (4 * j)].innerHTML = data.forecast.forecastday[j].hour[i * 6].time.slice(11, 17)
             weekIcons[i + (4 * j)].src = `https:${data.forecast.forecastday[j].hour[i * 6].condition.icon}`
             weekTemps[i + (4 * j)].innerHTML = Math.round(data.forecast.forecastday[j].hour[i * 6].temp_c)

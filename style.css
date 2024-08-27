@@ -300,7 +300,7 @@ body {
 }
 .today__hourly::-webkit-scrollbar {
     display: none;
-  }
+}
 .hourly__card {
     width: clamp(57px, 7.4vw, 76px);
     aspect-ratio: 54 / 64;
@@ -347,6 +347,9 @@ body {
     row-gap: 20px;
     overflow-x: scroll;
 }
+.week::-webkit-scrollbar {
+    display: none;
+}
 .week__city {
     grid-column: 2 / -1;
     justify-self: start;
@@ -378,16 +381,6 @@ body {
     font-size: clamp(15px, 2vw, 20px);
     padding-block: 5px;
 }
-/* .week__time {
-} */
 .week__icon {
     width: clamp(38px, 5vw, 50px);
 }
-/* .week__temp {
-}
-.week__pressure {
-}
-.week__wind {
-}
-.week__humidity {
-} */
